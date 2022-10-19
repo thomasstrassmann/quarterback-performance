@@ -35,13 +35,36 @@ def get_quarterback():
     name = input("Enter the lastname of the quarterback here: \n")
     name.title()
 
-    if type(name) == "str":
+    if isinstance(name, str):
         print("Perfect, the lastname is valid!")
     else:
         print("The input must contain a combination of letters")
         get_quarterback()
     return name
 
+
+def get_gameday():
+    """
+    Gets the gameday integer from the user.
+    """
+    print("A football season has 17 game days for each team.")
+    gameday = input("Enter the current gameday number(from 1 to 17)\n")
+
+    try: 
+        if type(gameday) != "str" or gameday > 17 or gameday < 1:
+            raise ValueError("The number entered is not correct")
+    except ValueError as e:
+        print(f"Invalid value: {e}, please enter a number between 1 and 17.\n")
+        get_gameday()
+
+
+#def check_integer(value):
+ #   """
+  #  This helper function checks various variables for integer numbers.
+   # If the values are not integer values, the user must change the given input.
+    #"""
+
+    #try'
 
 def main():
     """
@@ -50,6 +73,8 @@ def main():
     """
     start()
     name = get_quarterback()
+    gameday = get_gameday()
+
 
 
 main()
