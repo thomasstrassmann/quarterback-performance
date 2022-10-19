@@ -37,21 +37,23 @@ def get_quarterback():
     name = name.title()
     return name
 
+
 def get_gameday():
     """
     Gets the gameday integer from the user.
+    Checks if the number is between 1 and 17.
     """
     print("A football season has 17 game days for each team.")
-    gameday = int(input("Enter the current gameday number(from 1 to 17)\n"))
-
-    try: 
+    
+    while True: 
+        gameday = int(input(
+            "Please enter the current gameday (from 1 to 17)\n"))
         if gameday > 17 or gameday < 1:
-            raise ValueError("The number entered is not correct")
-    except ValueError as e:
-        print(f"Invalid value: {e}, please enter a number between 1 and 17.\n")
-        get_gameday()
-    else:
-        return gameday
+            print(f"{gameday} is not a number between 1 and 17.\n")
+            continue
+        else:
+            return gameday
+            break
 
 
 def check(name, gameday):
@@ -59,28 +61,34 @@ def check(name, gameday):
     This function checks, if the gameday already exists in the spreadsheet.
     """
     existing_names = user_input.col_values(8)
+    existing_names = existing_names[1:]
+
     existing_gamedays = user_input.col_values(9)
+    existing_gamedays = existing_gamedays[1:]
 
-    print(existing_names)
+    overview = list(zip(existing_names, existing_gamedays))
+    current_input = (name, str(gameday))
 
+    if current_input in overview:
+        print("This game of the season has already been entered")
+        print("Please choose another quarterback / gameday combination\n")
+        main()
+    else:
+        print("Please type in the following values for " 
+              f"{name}`s {gameday} game of the season")
+        return current_input
 
-#def check_integer(value):
- #   """
-  #  This helper function checks various variables for integer numbers.
-   # If the values are not integer values, the user must change the given input.
-    #"""
-
-    #try'
 
 def main():
     """
     This function calls all necessary functions in the right order, 
     according to the flow chart in the doc.
     """
-    start()
     name = get_quarterback()
     gameday = get_gameday()
-    check()
+    new_entry = check(name, gameday)
+    passes_completed = get_passes_completed()
+    
 
-
+start()
 main()
