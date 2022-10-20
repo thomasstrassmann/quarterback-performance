@@ -60,10 +60,10 @@ def check(name, gameday):
     """
     This function checks, if the gameday already exists in the spreadsheet.
     """
-    existing_names = user_input.col_values(8)
+    existing_names = user_input.col_values(7)
     existing_names = existing_names[1:]
 
-    existing_gamedays = user_input.col_values(9)
+    existing_gamedays = user_input.col_values(8)
     existing_gamedays = existing_gamedays[1:]
 
     overview = list(zip(existing_names, existing_gamedays))
@@ -123,12 +123,30 @@ def value_block():
 def save(entry, values):
     """
     The save function takes the entry (name and gameday) and the values
-    as arguments. First, the entry tuple gets converted to a list, 
+    as arguments. First, the entry tuple gets converted to a list,
     then the two value pairs get concatenated and then stored to the worksheet input.
     """
     entry = list(entry)
     data_to_update = values + entry
     user_input.append_row(data_to_update)
+
+
+def calculate_averages():
+    """
+    """
+    data = user_input.get_all_values()
+    data = data[1:]
+    column_names = user_input.col_values(7)
+    column_names = column_names[1:]
+
+    players = set(column_names)
+    values_list = []
+
+    for player in players:
+        cell = user_input.findall(player)
+        for i in cell:
+            values_list.append(user_input.row_values(i.row))
+    print(values_list)
 
 
 def main():
@@ -140,8 +158,9 @@ def main():
     gameday = get_gameday()
     new_entry = check(name, gameday)
     values = value_block()
-    print(values)
     save(new_entry, values)
+    averages = calculate_averages()
+    print(averages)
     
 
 start()
