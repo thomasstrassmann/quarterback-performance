@@ -120,6 +120,16 @@ def value_block():
             print("Please enter y or n")
             response = input("Enter y for yes or n for no: \n")
 
+def save(entry, values):
+    """
+    The save function takes the entry (name and gameday) and the values
+    as arguments. First, the entry tuple gets converted to a list, 
+    then the two value pairs get concatenated and then stored to the worksheet input.
+    """
+    entry = list(entry)
+    data_to_update = values + entry
+    user_input.append_row(data_to_update)
+
 
 def main():
     """
@@ -131,7 +141,7 @@ def main():
     new_entry = check(name, gameday)
     values = value_block()
     print(values)
-
+    save(new_entry, values)
     
 
 start()
