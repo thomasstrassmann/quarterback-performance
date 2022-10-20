@@ -43,7 +43,7 @@ def get_gameday():
     Gets the gameday integer from the user.
     Checks if the number is between 1 and 17.
     """
-    print("A football season has 17 game days for each team.")
+    print("\nA football season has 17 game days for each team.")
     
     while True: 
         gameday = int(input(
@@ -94,6 +94,32 @@ def get_values(statistic):
             return statistic
             break
 
+def value_block():
+    """
+    This code block calls all get_value functions and stores them in a container.
+    If the input is completed the user has the chance to check the values
+    and change them, if he wants to. 
+    The function returns the container list if the user confirms the input.
+    """
+    while True:
+        passes_completed = get_values("pass completions")
+        passes_thrown = get_values("pass attempts")
+        yards = get_values("thrown yards")
+        touchdowns = get_values("passing touchdowns")
+        interceptions = get_values("interceptions")
+        sacks = get_values("sacks")
+        container = [passes_completed, passes_thrown, yards, touchdowns, interceptions, sacks]
+        print("Are the values above correct?")
+        response = input("Enter y for yes or n for no: \n")
+        if response == 'y':
+            return container
+            break
+        elif response == 'n':
+            continue
+        else:
+            print("Please enter y or n")
+            response = input("Enter y for yes or n for no: \n")
+
 
 def main():
     """
@@ -103,12 +129,9 @@ def main():
     name = get_quarterback()
     gameday = get_gameday()
     new_entry = check(name, gameday)
-    passes_completed = get_values("pass completions")
-    passes_thrown = get_values("pass attempts")
-    yards = get_values("thrown yards")
-    touchdowns = get_values("passing touchdowns")
-    interceptions = get_values("interceptions")
-    sacks = get_values("sacks")
+    values = value_block()
+    print(values)
+
     
 
 start()
