@@ -79,6 +79,22 @@ def check(name, gameday):
         return current_input
 
 
+def get_values(statistic):
+    """
+    This function gets all values from the user as an integer.
+    It gets called with different parameters to cover any query.
+    """
+    while True:
+        try:
+            statistic = int(input(f"Enter the number of {statistic}: "))
+        except ValueError:
+            print("Please enter an integer number")
+            continue
+        else:
+            return statistic
+            break
+
+
 def main():
     """
     This function calls all necessary functions in the right order, 
@@ -87,7 +103,12 @@ def main():
     name = get_quarterback()
     gameday = get_gameday()
     new_entry = check(name, gameday)
-    passes_completed = get_passes_completed()
+    passes_completed = get_values("pass completions")
+    passes_thrown = get_values("pass attempts")
+    yards = get_values("thrown yards")
+    touchdowns = get_values("passing touchdowns")
+    interceptions = get_values("interceptions")
+    sacks = get_values("sacks")
     
 
 start()
