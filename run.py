@@ -14,6 +14,7 @@ SHEET = GSPREAD_CLIENT.open('quarterback_performance')
 
 user_input = SHEET.worksheet('input')
 averages = SHEET.worksheet("averages")
+total = SHEET.worksheet("total")
 
 
 def start():
@@ -141,13 +142,26 @@ def calculate_averages():
 
     players = set(column_names)
     values_list = []
+    player_dict = {}
+    container = []
 
     for player in players:
+        container.clear()
+        values_list.clear()
         cell = user_input.findall(player)
+#        print(cell)
         for i in cell:
-            values_list.append(user_input.row_values(i.row))
-    print(values_list)
+            trim = user_input.row_values(i.row)[0:5]
+            container.append(trim)
+#            combined_container = [sum(x) for x in zip(*container)]
+        new_player = {player: container}
+        print(new_player)
+        player_dict.update(new_player)
+#       print(player_dict)
 
+#    print(values_list)
+#    print(player_dict)
+        
 
 def main():
     """
