@@ -191,6 +191,16 @@ def calculate_efficency():
     averages.update(f"H2:H{length_of_column}", percentage)
 
 
+def compare():
+    """
+    """
+    average = averages.batch_get(["C2:F2", "H2"])
+    flat_list = [item for list in average for item in list]
+    average_list = flat_list[0] + flat_list[1]
+
+    
+
+
 def main():
     """
     This function calls all necessary functions in the right order,
@@ -203,6 +213,7 @@ def main():
     save(new_entry, values)
     calculate_averages(name)
     calculate_efficency()
+    compare()
 
 start()
 main()
