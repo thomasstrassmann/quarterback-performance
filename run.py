@@ -14,7 +14,6 @@ SHEET = GSPREAD_CLIENT.open('quarterback_performance')
 
 user_input = SHEET.worksheet('input')
 averages = SHEET.worksheet("averages")
-total = SHEET.worksheet("total")
 
 
 def start():
@@ -200,15 +199,18 @@ def compare():
 
     players = averages.col_values(7)[2:]
     print(players)
-    players_dict = {player: '' for player in players}
+    players_dict = {player: {"stats": "", "diff": ""} for player in players}
     print(players_dict)
     for i in players_dict:
         target = averages.find(i)
         raw_player_stats = averages.row_values(target.row)
         reduced_player_stats = raw_player_stats[2:6]
         reduced_player_stats.append(raw_player_stats[7])
-        players_dict[i] = reduced_player_stats
+        players_dict[i]["stats"] = reduced_player_stats
     print(players_dict)
+
+#    for player in players_dict:
+
 
 def main():
     """
