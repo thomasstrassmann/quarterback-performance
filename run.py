@@ -192,13 +192,18 @@ def calculate_efficency():
 
 def compare():
     """
+    The compare function first gets the average values and stores them in a list.
+    After that, a player dictonary gets created by iterating over the players data.
+    The dictonarys keys are the players, which contain a dictionary themselves.
+    The players dictonary consists of the keys stats(individual player stats)
+    and diff(the difference calculated to the average values).
+    The function returns the whole dictonary.
     """
     average = averages.batch_get(["C2:F2", "H2"])
     flat_list = [item for list in average for item in list]
     average_list = flat_list[0] + flat_list[1]
 
     players = averages.col_values(7)[2:]
-    print(players)
     players_dict = {player: {"stats": "", "diff": ""} for player in players}
     print(players_dict)
     for i in players_dict:
@@ -209,7 +214,14 @@ def compare():
         players_dict[i]["stats"] = reduced_player_stats
     print(players_dict)
 
-#    for player in players_dict:
+    for player in players_dict:
+        float_averages = [float(x.replace(',', '.')) for x in average_list]
+        float_stats = [float(x.replace(',', '.')) for x in players_dict[player]["stats"]]
+        difference = [i - j for i, j in zip(float_averages, float_stats)]
+        rounded_difference = [round(num, 1) for num in difference]
+        players_dict[player]["diff"] = rounded_difference
+    print(players_dict)
+    return players_dict
 
 
 def main():
