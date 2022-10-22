@@ -22,7 +22,7 @@ def start():
     Welcomes the user to the interface.
     Explains the benefits of using the app.
     """
-    print("Welcome to the quarterback performance app") 
+    print("Welcome to the quarterback performance app")
     print("- The source for individual quarterback ratings\n")
     print("Here you can enter the statistics of the match day...")
     print("and see exactly how your favorite players performed.\n")
@@ -45,8 +45,8 @@ def get_gameday():
     Checks if the number is between 1 and 17.
     """
     print("\nA football season has 17 game days for each team.")
-    
-    while True: 
+
+    while True:
         gameday = int(input(
             "Please enter the current gameday (from 1 to 17)\n"))
         if gameday > 17 or gameday < 1:
@@ -75,7 +75,7 @@ def check(name, gameday):
         print("Please choose another quarterback / gameday combination\n")
         main()
     else:
-        print("Please type in the following values for " 
+        print("Please type in the following values for "
               f"{name}`s {gameday} game of the season")
         return current_input
 
@@ -95,11 +95,12 @@ def get_values(statistic):
             return statistic
             break
 
+
 def value_block():
     """
     This code block calls all get_value functions and stores them in a container.
     If the input is completed the user has the chance to check the values
-    and change them, if he wants to. 
+    and change them, if he wants to.
     The function returns the container list if the user confirms the input.
     """
     while True:
@@ -121,6 +122,7 @@ def value_block():
             print("Please enter y or n")
             response = input("Enter y for yes or n for no: \n")
 
+
 def save(entry, values):
     """
     The save function takes the entry (name and gameday) and the values
@@ -132,40 +134,46 @@ def save(entry, values):
     user_input.append_row(data_to_update)
 
 
-def calculate_averages():
+def calculate_averages(name):
     """
+    This function checks first, if the name is already in the sheets, or if it
+    is the first time the user entered the name.
+    If it is the first entry, the function just takes the value from the
+    worksheet input and copies it into the averages, to save some resources.
+    If the name is already in the input worksheet, the first if clause
+    finds all entries, and trims them down to the necessary values.
+    Then it converts every entry in the list to an integer number and adds
+    all values together. Every item of the combined container then get divided
+    by the number of entries to get the average. The last 4 lines in the
+    if clause find the existing values in the averages, deletes them, and
+    replaces them with the new correct values.
     """
-    data = user_input.get_all_values()
-    data = data[1:]
-    column_names = user_input.col_values(7)
-    column_names = column_names[1:]
-
-    players = set(column_names)
-    values_list = []
-    player_dict = {}
     container = []
-
-    for player in players:
-        container.clear()
-        values_list.clear()
-        cell = user_input.findall(player)
-#        print(cell)
-        for i in cell:
-            trim = user_input.row_values(i.row)[0:5]
+    if averages.find(name) is not None:
+        cells = user_input.findall(name)
+        for i in cells:
+            trim = user_input.row_values(i.row)[0:6]
             container.append(trim)
-#            combined_container = [sum(x) for x in zip(*container)]
-        new_player = {player: container}
-        print(new_player)
-        player_dict.update(new_player)
-#       print(player_dict)
+        container = [[int(float(j)) for j in i] for i in container]
+        combined_container = [sum(x) for x in zip(*container)]
+        dividend = len(container)
+        averages_container = []
+        for i in combined_container:
+            average = i / dividend
+            averages_container.append(round(average, 1))
+        target = averages.find(name)
+        averages.delete_rows(target.row)
+        averages_container.append(name)
+        averages.append_row(averages_container)
+    else:
+        cell = user_input.find(name)
+        values = user_input.row_values(cell.row)[0:7]
+        averages.append_row(values)
 
-#    print(values_list)
-#    print(player_dict)
-        
 
 def main():
     """
-    This function calls all necessary functions in the right order, 
+    This function calls all necessary functions in the right order,
     according to the flow chart in the doc.
     """
     name = get_quarterback()
@@ -173,9 +181,7 @@ def main():
     new_entry = check(name, gameday)
     values = value_block()
     save(new_entry, values)
-    averages = calculate_averages()
-    print(averages)
-    
+    calculate_averages(name)
 
 start()
 main()
