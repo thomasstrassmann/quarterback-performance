@@ -198,8 +198,17 @@ def compare():
     flat_list = [item for list in average for item in list]
     average_list = flat_list[0] + flat_list[1]
 
-    
-
+    players = averages.col_values(7)[2:]
+    print(players)
+    players_dict = {player: '' for player in players}
+    print(players_dict)
+    for i in players_dict:
+        target = averages.find(i)
+        raw_player_stats = averages.row_values(target.row)
+        reduced_player_stats = raw_player_stats[2:6]
+        reduced_player_stats.append(raw_player_stats[7])
+        players_dict[i] = reduced_player_stats
+    print(players_dict)
 
 def main():
     """
