@@ -171,6 +171,26 @@ def calculate_averages(name):
         averages.append_row(values)
 
 
+def calculate_efficency():
+    """
+    The calculate_efficeny function calculates the pass completion percentage.
+    It does it by grabbing and converting all values in the passes_completed and passes_thrown
+    columns fo floats in the average worksheet. Then it zips them together in one
+    container and calculates the percentage. After that, the columns are updated with the new 
+    value. 
+    """
+    passes_completed = averages.col_values(1)[1:]
+    passes_completed = [float(x.replace(',', '.')) for x in passes_completed]
+
+    pass_attempts = averages.col_values(2)[1:]
+    pass_attempts = [float(x.replace(',', '.')) for x in pass_attempts]
+
+    percentage = [round((i / j) * 100, 1) for i, j in zip(passes_completed, pass_attempts)]
+    percentage = [[i] for i in percentage]
+    length_of_column = len(percentage) + 1
+    averages.update(f"H2:H{length_of_column}", percentage)
+
+
 def main():
     """
     This function calls all necessary functions in the right order,
@@ -182,6 +202,7 @@ def main():
     values = value_block()
     save(new_entry, values)
     calculate_averages(name)
+    calculate_efficency()
 
 start()
 main()
