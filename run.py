@@ -192,11 +192,13 @@ def calculate_efficency():
 
 def compare():
     """
-    The compare function first gets the average values and stores them in a list.
-    After that, a player dictonary gets created by iterating over the players data.
-    The dictonarys keys are the players, which contain a dictionary themselves.
-    The players dictonary consists of the keys stats(individual player stats)
-    and diff(the difference calculated to the average values).
+    The compare function first gets the average values and stores them in
+    a list. After that, a player dictonary gets created by iterating over
+    the players data.The dictonarys keys are the players, which contain a
+    dictionary themselves.
+    The players dictonary consists of the keys stats(individual player stats),
+    diff(the difference calculated to the average values)
+    and grades(calculated in the next function).
     The function returns the whole dictonary.
     """
     average = averages.batch_get(["C2:F2", "H2"])
@@ -204,15 +206,14 @@ def compare():
     average_list = flat_list[0] + flat_list[1]
 
     players = averages.col_values(7)[2:]
-    players_dict = {player: {"stats": "", "diff": ""} for player in players}
-    print(players_dict)
+    players_dict = {player: {"stats": "", "diff": "", "grades": []} for player in players}
+
     for i in players_dict:
         target = averages.find(i)
         raw_player_stats = averages.row_values(target.row)
         reduced_player_stats = raw_player_stats[2:6]
         reduced_player_stats.append(raw_player_stats[7])
         players_dict[i]["stats"] = reduced_player_stats
-    print(players_dict)
 
     for player in players_dict:
         float_averages = [float(x.replace(',', '.')) for x in average_list]
@@ -220,8 +221,26 @@ def compare():
         difference = [i - j for i, j in zip(float_averages, float_stats)]
         rounded_difference = [round(num, 1) for num in difference]
         players_dict[player]["diff"] = rounded_difference
-    print(players_dict)
     return players_dict
+
+
+def rate(players_dict):
+    """
+    """
+    for player in players_dict:
+        pass_diff = players_dict[player]["diff"][0]
+        grade = players_dict[player]["grades"]
+        if pass_diff <= -60.2:
+            grade.append("A")
+        elif pass_diff >= -60.1 and pass_diff <= -20.1:
+            grade.append("B")
+        elif pass_diff >= -20 and pass_diff <= 20:
+            grade.append("C")
+        elif pass_diff >= 20.1 and pass_diff <= 60.1:
+            grade.append("D")
+        else:
+            grade.append("F")
+    print(players_dict)
 
 
 def main():
@@ -236,7 +255,9 @@ def main():
     save(new_entry, values)
     calculate_averages(name)
     calculate_efficency()
-    compare()
+    players_dict = compare()
+    rate(players_dict)
+
 
 start()
 main()
