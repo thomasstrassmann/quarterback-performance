@@ -343,6 +343,17 @@ def generate_leaderboard(players_dict):
         return leaderboard
 
 
+def display_leaderboard(leaderboard):
+    """
+    The display_leaderboard function takes the dict leaderboard
+    as an argument and sorts it from highest to lowest score, then displays it.
+    """
+    print("The QBs with the best performance are:")
+    sorted_leaderboard = sorted(leaderboard.items(), key=lambda x: x[1], reverse=True)
+    for entry in sorted_leaderboard:
+        print(f"{entry[0]}: {entry[1]}")
+
+
 def main():
     """
     This function calls all necessary functions in the right order,
