@@ -353,6 +353,27 @@ def display_leaderboard(leaderboard):
     for entry in sorted_leaderboard:
         print(f"{entry[0]}: {entry[1]}")
 
+def add():
+    """
+    The add function is the last function to call and it asks
+    the user, if he / she would like to continue with the QPA.
+    If so, the main function gets called again, otherwise the user
+    exits the application.
+    """
+    while True:
+        print("Do you want to add another statistic?")
+        response = input("Enter y for yes or n for no: \n")
+        if response == 'y':
+            main()
+            break
+        elif response == 'n':
+            print("Thanks for updating your gameday statistics on QPA")
+            print("See you next weekend!")
+            break
+        else:
+            print("Please enter y or n")
+            response = input("Enter y for yes or n for no: \n")
+
 
 def main():
     """
@@ -371,7 +392,7 @@ def main():
     display_grades(name, grades_result)
     leaderboard = generate_leaderboard(players_dict)
     display_leaderboard(leaderboard)
-
+    add()
 
 start()
 main()
