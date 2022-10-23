@@ -226,6 +226,9 @@ def compare():
 
 def rate(players_dict):
     """
+    The rate function takes the complete players dict as an argument.
+    It evaluates the grades for each stat by grabbing the differences
+    to the average and comparing them to a set of conditions.
     """
     for player in players_dict:
         pass_diff = players_dict[player]["diff"][0]
@@ -289,9 +292,27 @@ def rate(players_dict):
             grade.append("D")
         elif comp_diff >= 4.2:
             grade.append("F")
+    return players_dict
 
 
-    print(players_dict)
+def display_grades(name, grades_result):
+    """
+    The display_grades function shows the grades for the performance 
+    of the quarterback the user just entered in relation to the 
+    average values of last year.
+    """
+    yards_grade = grades_result[name]["grades"][0]
+    efficency_grade = grades_result[name]["grades"][4]
+    td_grade = grades_result[name]["grades"][1]
+    int_grade = grades_result[name]["grades"][2]
+    sack_grade = grades_result[name]["grades"][3]
+
+    print(f"For the season performance registered so far, {name} receives the following grades: ")
+    print(f"Passing yards: {yards_grade}")
+    print(f"Efficency / completion percentage: {efficency_grade}")
+    print(f"Touchdowns: {td_grade}")
+    print(f"Interceptions: {int_grade}")
+    print(f"Sacks: {sack_grade}")
 
 
 def main():
@@ -307,7 +328,8 @@ def main():
     calculate_averages(name)
     calculate_efficency()
     players_dict = compare()
-    rate(players_dict)
+    grades_result = rate(players_dict)
+    display_grades(name, grades_result)
 
 
 start()
