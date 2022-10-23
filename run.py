@@ -131,6 +131,7 @@ def save(entry, values):
     entry = list(entry)
     data_to_update = values + entry
     user_input.append_row(data_to_update)
+    print("Calculating... Please wait a second!")
 
 
 def calculate_averages(name):
