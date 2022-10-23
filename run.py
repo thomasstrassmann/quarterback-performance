@@ -229,6 +229,8 @@ def rate(players_dict):
     """
     for player in players_dict:
         pass_diff = players_dict[player]["diff"][0]
+        td_diff = players_dict[player]["diff"][1]
+
         grade = players_dict[player]["grades"]
         if pass_diff <= -60.2:
             grade.append("A")
@@ -240,6 +242,19 @@ def rate(players_dict):
             grade.append("D")
         else:
             grade.append("F")
+
+        if td_diff <= -0.8:
+            grade.append("A")
+        elif td_diff >= -0.7 and td_diff <= -0.3:
+            grade.append("B")
+        elif td_diff >= -0.2 and td_diff <= 0.2:
+            grade.append("C")
+        elif td_diff >= 0.3 and td_diff <= 0.7:
+            grade.append("D")
+        else:
+            grade.append("F")
+
+
     print(players_dict)
 
 
