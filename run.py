@@ -207,7 +207,7 @@ def compare():
     average_list = flat_list[0] + flat_list[1]
 
     players = averages.col_values(7)[2:]
-    players_dict = {player: {"stats": "", "diff": "", "grades": []} for player in players}
+    players_dict = {player: {"stats": "", "diff": "", "grades": [], "score": ""} for player in players}
 
     for i in players_dict:
         target = averages.find(i)
@@ -316,6 +316,33 @@ def display_grades(name, grades_result):
     print(f"Sacks: {sack_grade}")
 
 
+def generate_leaderboard(players_dict):
+    """
+    The generate_leaderboard function takes the player_dict 
+    (without grades) as an argument and only runs, if there are two or
+    more players in the database. 
+    It gets the average yards, touchdowns and interceptions and generates
+    a score with these values. After that, a leaderboard dict is created
+    with the players name as the key and the score as the value. The
+    function returns the leaderboard. 
+    """
+    if len(players_dict) >= 2:
+        for player in players_dict:
+            float_stats = [float(x.replace(',', '.')) for x in players_dict[player]["stats"]]
+            yards = float_stats[0]
+            tds = float_stats[1]
+            ints = float_stats[2]
+            calculated_score = ((tds * 2) - ints) * yards
+            rounded_score = round(calculated_score, 1)
+            players_dict[player]["score"] = rounded_score
+
+        leaderboard = {}
+        for player in players_dict:
+            individual_score = {player: players_dict[player]["score"]}
+            leaderboard.update(individual_score)
+        return leaderboard
+
+
 def main():
     """
     This function calls all necessary functions in the right order,
@@ -331,6 +358,8 @@ def main():
     players_dict = compare()
     grades_result = rate(players_dict)
     display_grades(name, grades_result)
+    leaderboard = generate_leaderboard(players_dict)
+    display_leaderboard(leaderboard)
 
 
 start()
