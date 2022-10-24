@@ -73,7 +73,7 @@ def check(name, gameday):
         print("Please choose another quarterback / gameday combination\n")
         main()
     else:
-        print("Please type in the following values for "
+        print("\nPlease type in the following values for "
               f"{name}`s {gameday} game of the season")
         return current_input
 
@@ -128,7 +128,7 @@ def save(entry, values):
     entry = list(entry)
     data_to_update = values + entry
     user_input.append_row(data_to_update)
-    print("Calculating... Please wait a second!")
+    print("Calculating... Please wait a second!\n")
 
 
 def calculate_averages(name):
@@ -305,12 +305,13 @@ def display_grades(name, grades_result):
     int_grade = grades_result[name]["grades"][2]
     sack_grade = grades_result[name]["grades"][3]
 
+    print("################\n")
     print(f"For the season performance registered so far, {name} receives the following grades: ")
     print(f"Passing yards: {yards_grade}")
     print(f"Efficency / completion percentage: {efficency_grade}")
     print(f"Touchdowns: {td_grade}")
     print(f"Interceptions: {int_grade}")
-    print(f"Sacks: {sack_grade}")
+    print(f"Sacks: {sack_grade}\n")
 
 
 def generate_leaderboard(players_dict):
@@ -345,6 +346,7 @@ def display_leaderboard(leaderboard):
     The display_leaderboard function takes the dict leaderboard
     as an argument and sorts it from highest to lowest score, then displays it.
     """
+    print("################\n")
     print("The QBs with the best performance are:")
     sorted_leaderboard = sorted(leaderboard.items(), key=lambda x: x[1], reverse=True)
     for entry in sorted_leaderboard:
@@ -359,7 +361,7 @@ def add():
     exits the application.
     """
     while True:
-        print("Do you want to add another statistic?")
+        print("\nDo you want to add another statistic?")
         response = input("Enter y for yes or n for no: \n")
         if response == 'y':
             main()
