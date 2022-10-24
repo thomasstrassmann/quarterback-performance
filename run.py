@@ -28,10 +28,16 @@ def start():
     Welcomes the user to the interface.
     Explains the benefits of using the app.
     """
-    print("Welcome to the quarterback performance app")
-    print("- The source for individual quarterback ratings\n")
+    print("Welcome to the quarterback performance app!")
+    print("The source for individual quarterback ratings.\n")
     print("Here you can enter the statistics of the match day...")
     print("and see exactly how your favorite players performed.\n")
+    print("The QPA shows you first, how the QB entered performed")
+    print("in relation to the average values of last year, "
+          "assigning school grades to the performance.")
+    print("Then, all QBs in the database are compared to eachother.")
+    print("Each player gets a specific score, which is made up of "
+          "the averages of yards thrown, touchdowns and interceptions.\n")
     print("################\n")
 
 
