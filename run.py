@@ -114,7 +114,8 @@ def value_block():
         touchdowns = get_values("passing touchdowns")
         interceptions = get_values("interceptions")
         sacks = get_values("sacks")
-        container = [passes_completed, passes_thrown, yards, touchdowns, interceptions, sacks]
+        container = [passes_completed, passes_thrown,
+                     yards, touchdowns, interceptions, sacks]
         print("Are the values above correct?")
         response = input("Enter y for yes or n for no: \n")
         if response == 'y':
@@ -191,7 +192,8 @@ def calculate_efficency():
     pass_attempts = averages.col_values(2)[1:]
     pass_attempts = [float(x.replace(',', '.')) for x in pass_attempts]
 
-    percentage = [round((i / j) * 100, 1) for i, j in zip(passes_completed, pass_attempts)]
+    percentage = [round((i / j) * 100, 1) for i, j in zip(passes_completed,
+                                                          pass_attempts)]
     percentage = [[i] for i in percentage]
     length_of_column = len(percentage) + 1
     averages.update(f"H2:H{length_of_column}", percentage)
@@ -213,7 +215,8 @@ def compare():
     average_list = flat_list[0] + flat_list[1]
 
     players = averages.col_values(7)[2:]
-    players_dict = {player: {"stats": "", "diff": "", "grades": [], "score": ""} for player in players}
+    players_dict = {player: {"stats": "", "diff": "", "grades": [],
+                    "score": ""} for player in players}
 
     for i in players_dict:
         target = averages.find(i)
@@ -224,7 +227,8 @@ def compare():
 
     for player in players_dict:
         float_averages = [float(x.replace(',', '.')) for x in average_list]
-        float_stats = [float(x.replace(',', '.')) for x in players_dict[player]["stats"]]
+        float_stats = [float(x.replace(',', '.'))
+                       for x in players_dict[player]["stats"]]
         difference = [i - j for i, j in zip(float_averages, float_stats)]
         rounded_difference = [round(num, 1) for num in difference]
         players_dict[player]["diff"] = rounded_difference
@@ -315,7 +319,8 @@ def display_grades(name, grades_result):
     sack_grade = grades_result[name]["grades"][3]
 
     print("################\n")
-    print(f"For the season performance registered so far, {name} receives the following grades: \n")
+    print("For the season performance registered so far, "
+          f"{name} receives the following grades: \n")
     print(f"Passing yards: {yards_grade}")
     print(f"Efficency / completion percentage: {efficency_grade}")
     print(f"Touchdowns: {td_grade}")
@@ -335,7 +340,8 @@ def generate_leaderboard(players_dict):
     """
     if len(players_dict) >= 2:
         for player in players_dict:
-            float_stats = [float(x.replace(',', '.')) for x in players_dict[player]["stats"]]
+            float_stats = [float(x.replace(',', '.')) for x
+                           in players_dict[player]["stats"]]
             yards = float_stats[0]
             tds = float_stats[1]
             ints = float_stats[2]
@@ -357,8 +363,9 @@ def display_leaderboard(leaderboard):
     """
     if leaderboard:
         print("################\n")
-        print("The QBs with the best performance are: \n")
-        sorted_leaderboard = sorted(leaderboard.items(), key=lambda x: x[1], reverse=True)
+        print("The most productive QBs are in descending order: \n")
+        sorted_leaderboard = sorted(leaderboard.items(), key=lambda
+                                    x: x[1], reverse=True)
         for entry in sorted_leaderboard:
             print(f"{entry[0]}: {entry[1]}")
 
