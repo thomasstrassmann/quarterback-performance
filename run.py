@@ -283,7 +283,7 @@ def rate(name, players_dict):
         grade.append("B")
     elif sack_diff >= -0.2 and sack_diff <= 0.2:
         grade.append("C")
-    elif sack_diff >= -0.3 and sack_diff <= -0.7:
+    elif sack_diff >= -0.7 and sack_diff <= -0.3:
         grade.append("D")
     elif sack_diff <= -0.8:
         grade.append("F")
@@ -299,7 +299,6 @@ def rate(name, players_dict):
     elif comp_diff >= 4.2:
         grade.append("F")
 
-    print(players_dict)
     return players_dict
 
 
