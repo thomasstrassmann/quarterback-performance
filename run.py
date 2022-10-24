@@ -315,7 +315,7 @@ def display_grades(name, grades_result):
     sack_grade = grades_result[name]["grades"][3]
 
     print("################\n")
-    print(f"For the season performance registered so far, {name} receives the following grades: ")
+    print(f"For the season performance registered so far, {name} receives the following grades: \n")
     print(f"Passing yards: {yards_grade}")
     print(f"Efficency / completion percentage: {efficency_grade}")
     print(f"Touchdowns: {td_grade}")
@@ -356,7 +356,7 @@ def display_leaderboard(leaderboard):
     as an argument and sorts it from highest to lowest score, then displays it.
     """
     print("################\n")
-    print("The QBs with the best performance are:")
+    print("The QBs with the best performance are: \n")
     sorted_leaderboard = sorted(leaderboard.items(), key=lambda x: x[1], reverse=True)
     for entry in sorted_leaderboard:
         print(f"{entry[0]}: {entry[1]}")
@@ -376,8 +376,9 @@ def add():
             main()
             break
         elif response == 'n':
-            print("Thanks for updating your gameday statistics on QPA")
+            print("\nThanks for updating your gameday statistics on QPA.")
             print("See you next weekend!")
+            quit()
             break
         else:
             print("Please enter y or n")
