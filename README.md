@@ -68,7 +68,7 @@ The navigation is self-explanatory due to the input details.
 The organization of functionality and content is best described with a flow diagram.
 
 
-![Function flow](./assets/flow-chart.png "Function flow")
+![Function flow](./assets/doc/flow-chart.png "Function flow")
 
 
 The functions above perform the following operations: 
@@ -168,16 +168,36 @@ As already mentioned, Skeleton and Surface are not required. However, something 
 
 ## Features
 The following features were a decisive factor during the creation and they should help the Python app compile useful data.
-* 
-![](./assets "")
+* Data validation: It is checked for duplicates and for the correct entry of the individual values.
+* If the name of player entries matches, the average value is automatically calculated and stored in the worksheet averages.
+* The efficiency, or completion rate, is also recalculated with each entry. 
+* The average scores of the players are compared to the overall average and school grades are created from this.
+* A total performance score is calculated to represent offensive output.
 
+How are these school grades made up? 
+The following overview shows the mean values of the school grades in the center, with the outer margins to the left and right. The mean value of C is the mean value in this category from last year. 
+![yards grades](./assets/doc/yards-grades.png "yards grades")
+
+![completion grades](./assets/doc/comp-grades.png "completion grades")
+
+![td grades](./assets/doc/tds-grades.png "td grades")
+
+![int grades](./assets/doc/ints-grades.png "int grades")
+
+![sack grades](./assets/doc/sacks-grades.png "sack grades")
+
+
+How are the scores made up? 
+The average of touchdowns is multiplied by 2. Then the average of interceptions is subtracted. This number is then multiplied by the average of yards thrown to calculate the total score. 
+
+Why this procedure? 
+Sacks and completion percentage are undoubtedly important statisics, but are discarded in this calculation. For example, a quarterback can concede many sacks, but he can still deliver a good performance. Interceptions as malus are included in this calculation, because interceptions often lead to a good field position of the opponent, or directly to points of the opponent. Especially with few games and bad performances this score can have a negative value, which is intended. 
 
 ### Features for the future 
 The following features would be ideas for further development...
-* 
-* 
-* 
-
+* Each user gets his own spreadsheet or database by username and password. 
+* More statistics can be entered / queried.
+* Data validation can become even more accurate. For example, it is not possible for the number of pass attempts to exceed the number of pass completions. However, since this does not cause the program to crash, this validation was not done, but only a general confirmation query was implemented. 
 
 
 ## Testing 
