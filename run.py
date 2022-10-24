@@ -98,7 +98,7 @@ def get_values(statistic):
     """
     while True:
         try:
-            statistic = int(input(f"Enter the number of {statistic}: "))
+            statistic = int(input(f"Enter the number of {statistic}: \n"))
         except ValueError:
             print("Please enter an integer number")
             continue
