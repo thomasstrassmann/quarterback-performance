@@ -237,68 +237,69 @@ def rate(name, players_dict):
     It evaluates the grades for each stat by grabbing the differences
     to the average and comparing them to a set of conditions.
     """
-    for name in players_dict:
-        pass_diff = players_dict[name]["diff"][0]
-        td_diff = players_dict[name]["diff"][1]
-        int_diff = players_dict[name]["diff"][2]
-        sack_diff = players_dict[name]["diff"][3]
-        comp_diff = players_dict[name]["diff"][4]
+    pass_diff = players_dict[name]["diff"][0]
+    td_diff = players_dict[name]["diff"][1]
+    int_diff = players_dict[name]["diff"][2]
+    sack_diff = players_dict[name]["diff"][3]
+    comp_diff = players_dict[name]["diff"][4]
+    grade = players_dict[name]["grades"]
 
-        grade = players_dict[name]["grades"]
-        if pass_diff <= -60.2:
-            grade.append("A")
-        elif pass_diff >= -60.1 and pass_diff <= -20.1:
-            grade.append("B")
-        elif pass_diff >= -20 and pass_diff <= 20:
-            grade.append("C")
-        elif pass_diff >= 20.1 and pass_diff <= 60.1:
-            grade.append("D")
-        else:
-            grade.append("F")
+    if pass_diff <= -60.2:
+        grade.append("A")
+    elif pass_diff >= -60.1 and pass_diff <= -20.1:
+        grade.append("B")
+    elif pass_diff >= -20 and pass_diff <= 20:
+        grade.append("C")
+    elif pass_diff >= 20.1 and pass_diff <= 60.1:
+        grade.append("D")
+    else:
+        grade.append("F")
 
-        if td_diff <= -0.8:
-            grade.append("A")
-        elif td_diff >= -0.7 and td_diff <= -0.3:
-            grade.append("B")
-        elif td_diff >= -0.2 and td_diff <= 0.2:
-            grade.append("C")
-        elif td_diff >= 0.3 and td_diff <= 0.7:
-            grade.append("D")
-        else:
-            grade.append("F")
+    if td_diff <= -0.8:
+        grade.append("A")
+    elif td_diff >= -0.7 and td_diff <= -0.3:
+        grade.append("B")
+    elif td_diff >= -0.2 and td_diff <= 0.2:
+        grade.append("C")
+    elif td_diff >= 0.3 and td_diff <= 0.7:
+        grade.append("D")
+    else:
+        grade.append("F")
 
-        if int_diff >= 0.5:
-            grade.append("A")
-        elif int_diff >= 0.2 and int_diff <= 0.4:
-            grade.append("B")
-        elif int_diff >= -0.1 and int_diff <= 0.1:
-            grade.append("C")
-        elif int_diff >= -0.4 and int_diff <= -0.2:
-            grade.append("D")
-        elif int_diff <= -0.5:
-            grade.append("F")
+    if int_diff >= 0.5:
+        grade.append("A")
+    elif int_diff >= 0.2 and int_diff <= 0.4:
+        grade.append("B")
+    elif int_diff >= -0.1 and int_diff <= 0.1:
+        grade.append("C")
+    elif int_diff >= -0.4 and int_diff <= -0.2:
+        grade.append("D")
+    elif int_diff <= -0.5:
+        grade.append("F")
 
-        if sack_diff >= 0.8:
-            grade.append("A")
-        elif sack_diff >= 0.3 and sack_diff <= 0.7:
-            grade.append("B")
-        elif sack_diff >= -0.2 and sack_diff <= 0.2:
-            grade.append("C")
-        elif sack_diff >= -0.3 and sack_diff <= -0.7:
-            grade.append("D")
-        elif sack_diff <= -0.8:
-            grade.append("F")
+    if sack_diff >= 0.8:
+        grade.append("A")
+    elif sack_diff >= 0.3 and sack_diff <= 0.7:
+        grade.append("B")
+    elif sack_diff >= -0.2 and sack_diff <= 0.2:
+        grade.append("C")
+    elif sack_diff >= -0.3 and sack_diff <= -0.7:
+        grade.append("D")
+    elif sack_diff <= -0.8:
+        grade.append("F")
 
-        if comp_diff <= -4.2:
-            grade.append("A")
-        elif comp_diff >= -4.2 and comp_diff <= -2.1:
-            grade.append("B")
-        elif comp_diff >= -2 and comp_diff <= 2:
-            grade.append("C")
-        elif comp_diff >= 2.1 and comp_diff <= 4.1:
-            grade.append("D")
-        elif comp_diff >= 4.2:
-            grade.append("F")
+    if comp_diff <= -4.2:
+        grade.append("A")
+    elif comp_diff >= -4.2 and comp_diff <= -2.1:
+        grade.append("B")
+    elif comp_diff >= -2 and comp_diff <= 2:
+        grade.append("C")
+    elif comp_diff >= 2.1 and comp_diff <= 4.1:
+        grade.append("D")
+    elif comp_diff >= 4.2:
+        grade.append("F")
+
+    print(players_dict)
     return players_dict
 
 
@@ -355,11 +356,12 @@ def display_leaderboard(leaderboard):
     The display_leaderboard function takes the dict leaderboard
     as an argument and sorts it from highest to lowest score, then displays it.
     """
-    print("################\n")
-    print("The QBs with the best performance are: \n")
-    sorted_leaderboard = sorted(leaderboard.items(), key=lambda x: x[1], reverse=True)
-    for entry in sorted_leaderboard:
-        print(f"{entry[0]}: {entry[1]}")
+    if leaderboard:
+        print("################\n")
+        print("The QBs with the best performance are: \n")
+        sorted_leaderboard = sorted(leaderboard.items(), key=lambda x: x[1], reverse=True)
+        for entry in sorted_leaderboard:
+            print(f"{entry[0]}: {entry[1]}")
 
 
 def add():
