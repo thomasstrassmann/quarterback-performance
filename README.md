@@ -227,34 +227,50 @@ On Heroku, a new app was created that includes Python and Node.js as technologie
 
 For users who are not yet familiar with American football... 
 These are the standard values per game of the last season: 
+
 Passes completed: 22,3
+
 Pass attempts: 34,4
+
 Completion percentage: 64,8
+
 Yards: 223,3
+
 Touchdowns: 1,4
+
 Interceptions: 0,8
+
 Sacks: 2,3
+
 
 In order to get values that are as realistic as possible, it would of course make sense to use these values as a guide and not to select values that cannot be found in a conventional game.
 For more information and rules about american football, the following site is recommended: 
+
 https://en.wikipedia.org/wiki/American_football_rules
 
 
-The spreadsheet or database can be viewed at: https://docs.google.com/spreadsheets/d/1jzomPaamamyicS_RJ5QSzbrvsP8R4oTxsX2uFYE80WE/edit#gid=499135904
+The spreadsheet or database can be viewed at: 
+https://docs.google.com/spreadsheets/d/1jzomPaamamyicS_RJ5QSzbrvsP8R4oTxsX2uFYE80WE/edit#gid=499135904
 However, this can only be opened in viewer mode to exclude deleting the averages row. If a full access is necessary / desired, please contact me.
 
 ## Credits
 The app was developed entirely by myself and no external code was copied or used in any other way. At this point I would like to give credits to the love-sandwiches project of Code Institute, which taught me how to connect and use the API of google sheets. 
 
 General resources for research were: 
+
 https://stackoverflow.com/freecodecamp
+
 https://codeberryschool.com/en/
+
 https://www.geeksforgeeks.org/
+
 https://developers.google.com/sheets/api
+
 
 However, this was only used to fix standard issues. So for example, how do I handle lists in a list, how do I convert datatypes, etc.? Only solution strategies were taken from these sources. 
 
 The standard football values were found on the following page: 
+
 https://www.pro-football-reference.com/years/NFL/passing.htm
 
 I hope you have some fun with this app and that you get involved with this exciting sport. 
