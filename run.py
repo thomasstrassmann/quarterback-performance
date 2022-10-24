@@ -44,11 +44,18 @@ def start():
 def get_quarterback():
     """
     Gets the name of the quarterback from the user.
+    It makes sure, no number is included, because otherwise the program crashes.
     Capitalizes the first letter of the lastname.
     """
-    name = input("Enter the lastname of the quarterback here: \n")
-    name = name.title()
-    return name
+    while True:
+        name = input("Enter the lastname of the quarterback here: \n")
+
+        if True in [i.isdigit() for i in name]:
+            print("The name must not contain numbers!")
+            continue
+        else:
+            name = name.title()
+            return name
 
 
 def get_gameday():
@@ -325,7 +332,7 @@ def display_grades(name, grades_result):
     sack_grade = grades_result[name]["grades"][3]
 
     print("################\n")
-    print("For the season performance registered so far, "
+    print("For the season performance registered so far, \n"
           f"{name} receives the following grades: \n")
     print(f"Passing yards: {yards_grade}")
     print(f"Efficency / completion percentage: {efficency_grade}")
