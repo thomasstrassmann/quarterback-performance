@@ -33,10 +33,10 @@ def start():
     print("Here you can enter the statistics of the match day...")
     print("and see exactly how your favorite players performed.\n")
     print("The QPA shows you first, how the QB entered performed")
-    print("in relation to the average values of last year, "
+    print("in relation to the average values of last year, \n"
           "assigning school grades to the performance.")
     print("Then, all QBs in the database are compared to eachother.")
-    print("Each player gets a specific score, which is made up of "
+    print("Each player gets a specific score, which is made up of \n"
           "the averages of yards thrown, touchdowns and interceptions.\n")
     print("################\n")
 
