@@ -49,12 +49,15 @@ def get_quarterback():
     """
     while True:
         name = input("Enter the lastname of the quarterback here: \n")
+        name = name.title()
 
         if True in [i.isdigit() for i in name]:
             print("The name must not contain numbers!")
             continue
+        elif name == "Average":
+            print("This name is already taken, please choose another one.")
+            continue
         else:
-            name = name.title()
             return name
 
 
