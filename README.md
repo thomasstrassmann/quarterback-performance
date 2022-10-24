@@ -2,7 +2,7 @@
 ## A python command-line application for American Football lovers
 
 
-![](./assets "")
+![introduction qpa](./assets/doc/screenshot-intro.png "introduction qpa")
 
 [Click here for the full website access](https://quarterback-performance.herokuapp.com/)
 
@@ -168,6 +168,9 @@ As already mentioned, Skeleton and Surface are not required. However, something 
 
 
 ## Features
+
+![results screenshot](./assets/doc/screenshot-result.png "results screenshot")
+
 The following features were a decisive factor during the creation and they should help the Python app compile useful data.
 * Data validation: It is checked for duplicates and for the correct entry of the individual values.
 * If the name of player entries matches, the average value is automatically calculated and stored in the worksheet averages.
