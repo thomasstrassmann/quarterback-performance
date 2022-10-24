@@ -66,8 +66,96 @@ For time reasons, no more than two outputs are aimed at, namely the comparison t
 ### Structure 
 The navigation is self-explanatory due to the input details. 
 The organization of functionality and content is best described with a flow diagram.
-![Function flow](./ "Function flow")
 
+
+![Function flow](./assets/flow-chart.png "Function flow")
+
+
+The functions above perform the following operations: 
+
+start():
+* Welcomes the user to the interface.
+* Explains the benefits of using the app.
+
+
+get_quarterback():
+* Gets the name of the quarterback from the user.
+* It makes sure, no number is included and the name is not "Average", because otherwise the program crashes.
+* Capitalizes the first letter of the lastname.
+
+
+get_gameday():
+* Gets the gameday integer from the user.
+* Checks if the number is between 1 and 17.
+
+
+check(name, gameday):
+* This function checks, if the gameday already exists in the spreadsheet.
+
+
+get_values(statistic):
+* This function gets all values from the user as an integer.
+* It gets called with different parameters to cover any query.
+
+
+value_block():
+* This code block calls all get_value functions and stores them in a container.
+* If the input is completed the user has the chance to check the values and change them, if he wants to.
+* The function returns the container list if the user confirms the input.
+
+
+save(entry, values):
+* The save function takes the entry (name and gameday) and the values as arguments. 
+* First, the entry tuple gets converted to a list, then the two value pairs get concatenated and then stored to the worksheet input.
+
+
+calculate_averages(name):
+* This function checks first, if the name is already in the sheets, or if it is the first time the user entered the name.
+* If it is the first entry, the function just takes the value from the worksheet input and copies it into the averages, to save some resources.
+* If the name is already in the input worksheet, the first if clause finds all entries, and trims them down to the necessary values.
+* Then it converts every entry in the list to an integer number and adds all values together. Every item of the combined container then get divided by the number of entries to get the average. 
+* The last 4 lines in the if clause find the existing values in the averages, deletes them, and replaces them with the new correct values.
+
+
+calculate_efficency():
+* The calculate_efficeny function calculates the pass completion percentage.
+* It does it by grabbing and converting all values in the passes_completed and passes_thrown columns to floats in the average worksheet. 
+* Then it zips them together in one container and calculates the percentage. 
+* After that, the columns are updated with the new value.
+
+
+compare():
+* The compare function first gets the average values and stores them in a list. 
+* After that, a player dictonary gets created by iterating over the players data.
+* The dictonarys keys are the players, which contain a dictionary themselves.
+* The players dictonary consists of the keys stats(individual player stats), diff(the difference calculated to the average values) and grades(calculated in the next function).
+* The function returns the whole dictonary.
+
+
+rate(name, players_dict):
+* The rate function takes the complete players dict as an argument.
+* It evaluates the grades for each stat by grabbing the differences to the average and comparing them to a set of conditions.
+(More information about how the grades were calculated can be found in the features section)
+
+
+display_grades(name, grades_result):
+* The display_grades function shows the grades for the performance of the quarterback the user just entered in relation to the average values of last year.
+
+
+generate_leaderboard(players_dict):
+* The generate_leaderboard function takes the player_dict (without grades) as an argument and only runs, if there are two or more players in the database.
+* It gets the average yards, touchdowns and interceptions and generates a score with these values. 
+* After that, a leaderboard dict is created with the players name as the key and the score as the value. 
+* The function returns the leaderboard.
+(More information about how the score was calculated can be found in the features section)
+
+display_leaderboard(leaderboard):
+* The display_leaderboard function takes the dict leaderboard as an argument and sorts it from highest to lowest score, then displays it.
+
+
+add():
+* The add function is the last function to call and it asks the user, if he / she would like to continue with the QPA.
+* If so, the main function gets called again, otherwise the user exits the application.
 
 
 As already mentioned, Skeleton and Surface are not required. However, something can be summarized to the division and the representation also in the command-line: 
