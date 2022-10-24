@@ -69,7 +69,7 @@ def check(name, gameday):
     current_input = (name, str(gameday))
 
     if current_input in overview:
-        print("This game of the season has already been entered")
+        print("\nThis game of the season has already been entered")
         print("Please choose another quarterback / gameday combination\n")
         main()
     else:
@@ -222,20 +222,20 @@ def compare():
     return players_dict
 
 
-def rate(players_dict):
+def rate(name, players_dict):
     """
     The rate function takes the complete players dict as an argument.
     It evaluates the grades for each stat by grabbing the differences
     to the average and comparing them to a set of conditions.
     """
-    for player in players_dict:
-        pass_diff = players_dict[player]["diff"][0]
-        td_diff = players_dict[player]["diff"][1]
-        int_diff = players_dict[player]["diff"][2]
-        sack_diff = players_dict[player]["diff"][3]
-        comp_diff = players_dict[player]["diff"][4]
+    for name in players_dict:
+        pass_diff = players_dict[name]["diff"][0]
+        td_diff = players_dict[name]["diff"][1]
+        int_diff = players_dict[name]["diff"][2]
+        sack_diff = players_dict[name]["diff"][3]
+        comp_diff = players_dict[name]["diff"][4]
 
-        grade = players_dict[player]["grades"]
+        grade = players_dict[name]["grades"]
         if pass_diff <= -60.2:
             grade.append("A")
         elif pass_diff >= -60.1 and pass_diff <= -20.1:
@@ -295,8 +295,8 @@ def rate(players_dict):
 
 def display_grades(name, grades_result):
     """
-    The display_grades function shows the grades for the performance 
-    of the quarterback the user just entered in relation to the 
+    The display_grades function shows the grades for the performance
+    of the quarterback the user just entered in relation to the
     average values of last year.
     """
     yards_grade = grades_result[name]["grades"][0]
@@ -316,13 +316,13 @@ def display_grades(name, grades_result):
 
 def generate_leaderboard(players_dict):
     """
-    The generate_leaderboard function takes the player_dict 
+    The generate_leaderboard function takes the player_dict
     (without grades) as an argument and only runs, if there are two or
-    more players in the database. 
+    more players in the database.
     It gets the average yards, touchdowns and interceptions and generates
     a score with these values. After that, a leaderboard dict is created
     with the players name as the key and the score as the value. The
-    function returns the leaderboard. 
+    function returns the leaderboard.
     """
     if len(players_dict) >= 2:
         for player in players_dict:
@@ -388,7 +388,7 @@ def main():
     calculate_averages(name)
     calculate_efficency()
     players_dict = compare()
-    grades_result = rate(players_dict)
+    grades_result = rate(name, players_dict)
     display_grades(name, grades_result)
     leaderboard = generate_leaderboard(players_dict)
     display_leaderboard(leaderboard)
