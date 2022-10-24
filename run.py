@@ -1,3 +1,10 @@
+"""
+This module takes statisitcal inputs from the user and calculates
+the passing performance from a quarterback based on the
+average values of last year and the performances to other
+quarterback values, that has been entered.
+"""
+
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -95,9 +102,9 @@ def get_values(statistic):
 
 def value_block():
     """
-    This code block calls all get_value functions and stores them in a container.
-    If the input is completed the user has the chance to check the values
-    and change them, if he wants to.
+    This code block calls all get_value functions and stores them in a
+    container.If the input is completed the user has the chance to
+    check the values and change them, if he wants to.
     The function returns the container list if the user confirms the input.
     """
     while True:
@@ -123,7 +130,8 @@ def save(entry, values):
     """
     The save function takes the entry (name and gameday) and the values
     as arguments. First, the entry tuple gets converted to a list,
-    then the two value pairs get concatenated and then stored to the worksheet input.
+    then the two value pairs get concatenated and
+    then stored to the worksheet input.
     """
     entry = list(entry)
     data_to_update = values + entry
@@ -171,10 +179,11 @@ def calculate_averages(name):
 def calculate_efficency():
     """
     The calculate_efficeny function calculates the pass completion percentage.
-    It does it by grabbing and converting all values in the passes_completed and passes_thrown
-    columns fo floats in the average worksheet. Then it zips them together in one
-    container and calculates the percentage. After that, the columns are updated with the new 
-    value. 
+    It does it by grabbing and converting all values in the
+    passes_completed and passes_thrown columns fo floats in the average
+    worksheet. Then it zips them together in one container and calculates
+    the percentage. After that, the columns are updated with the new
+    value.
     """
     passes_completed = averages.col_values(1)[1:]
     passes_completed = [float(x.replace(',', '.')) for x in passes_completed]
