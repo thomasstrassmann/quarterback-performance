@@ -4,7 +4,7 @@
 
 ![](./assets "")
 
-[Click here for the full website access]()
+[Click here for the full website access](https://quarterback-performance.herokuapp.com/)
 
 
 
@@ -35,7 +35,7 @@ The **UXD - User Experience Design** was declared and described in advance and i
 ### Strategy 
 An application about a sport, in connection with statistics is (culturally) appropriate, almost goes without saying and not for nothing there is the expression: "Football is Family".
 
-Internet sites on statistics are a dime a dozen. So what makes the QPA special? First of all, it encourages users to collect the statistics of a match day themselves and to deal with them. Similar to a scrapbook with stickers.
+Internet sites on statistics are a dime a dozen. So what makes the QPA special? First of all, it encourages users to collect the statistics of a match day themselves and to deal with them. Similar to a scrapbook with stickers. By specifying its own statistics, this app is also highly customized, which makes it different from complete rankings of a league. The user can therefore create his own leaderboard with his favorite players. 
 
 In addition, the generation of information is very exciting, which is almost unavailable anywhere else, because: A quarterback's averages are not only compared to those of other quarterbacks, creating a leaderboard, but they are also compared to the default quarterback position from the previous year (i.e., averages). Thus, the user has a means of comparison that goes beyond traditional statistic rankings. 
 
@@ -74,7 +74,7 @@ As already mentioned, Skeleton and Surface are not required. However, something 
 * All input fields and error messages are clearly formulated.
 * The data must be listed cleanly one below the other.
 * Line breaks, hashtags or other characters can be used for visual delimitation.
-* A numbered list can be used to display the leaderboard. 
+* An orderd list can be used to display the leaderboard. 
 
 
 

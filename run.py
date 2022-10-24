@@ -44,8 +44,8 @@ def start():
 def get_quarterback():
     """
     Gets the name of the quarterback from the user.
-    It makes sure, no number is included, because otherwise the program crashes.
-    Capitalizes the first letter of the lastname.
+    It makes sure, no number is included, because otherwise the program
+    crashes. Capitalizes the first letter of the lastname.
     """
     while True:
         name = input("Enter the lastname of the quarterback here: \n")
