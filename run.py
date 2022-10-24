@@ -53,7 +53,6 @@ def get_gameday():
             continue
         else:
             return gameday
-            break
 
 
 def check(name, gameday):
@@ -92,7 +91,6 @@ def get_values(statistic):
             continue
         else:
             return statistic
-            break
 
 
 def value_block():
@@ -114,7 +112,6 @@ def value_block():
         response = input("Enter y for yes or n for no: \n")
         if response == 'y':
             return container
-            break
         elif response == 'n':
             continue
         else:
@@ -353,6 +350,7 @@ def display_leaderboard(leaderboard):
     for entry in sorted_leaderboard:
         print(f"{entry[0]}: {entry[1]}")
 
+
 def add():
     """
     The add function is the last function to call and it asks
@@ -393,6 +391,7 @@ def main():
     leaderboard = generate_leaderboard(players_dict)
     display_leaderboard(leaderboard)
     add()
+
 
 start()
 main()
