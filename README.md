@@ -14,7 +14,8 @@
 3. [Features](#features)
 4. [Testing](#testing)
 5. [Deployment](#deployment) 
-6. [Credits / attributes](#credits) 
+6. [Application instructions and further notes](#application-instructions-and-further-notes)
+7. [Credits / attributes](#credits) 
 
 
 
@@ -175,7 +176,8 @@ The following features were a decisive factor during the creation and they shoul
 * A total performance score is calculated to represent offensive output.
 
 How are these school grades made up? 
-The following overview shows the mean values of the school grades in the center, with the outer margins to the left and right. The mean value of C is the mean value in this category from last year. 
+The following overview shows the mean values of the school grades in the center, with the outer margins to the left and right. The mean value of C is the mean value in this category from last year.
+
 ![yards grades](./assets/doc/yards-grades.png "yards grades")
 
 ![completion grades](./assets/doc/comp-grades.png "completion grades")
@@ -197,18 +199,59 @@ Sacks and completion percentage are undoubtedly important statisics, but are dis
 The following features would be ideas for further development...
 * Each user gets his own spreadsheet or database by username and password. 
 * More statistics can be entered / queried.
-* Data validation can become even more accurate. For example, it is not possible for the number of pass attempts to exceed the number of pass completions. However, since this does not cause the program to crash, this validation was not done, but only a general confirmation query was implemented. 
+* Data validation can become even more accurate. For example, it is not possible for the number of pass completions to exceed the number of pass attempts. However, since this does not cause the program to crash, this validation was not done, but only a general confirmation query was implemented (user can enter yes or no). The same applies to the query of all integer values... Actually these must / can not be negative. Since however also thereby the program continues to run, this step was renounced. 
+* A way to overwrite existing entries using the check function.
 
 
 ## Testing 
+Syntax-wise the program was tested with pylint. After the completion of the project, neither errors nor problems were found. In the development process the most common errors were too many / too few whitespaces, too many blank lines and wrong data types that had to be converted. All errors could be fixed without much effort. 
 
+Logic-wise, the program was run through with all values to make sure that it cannot crash. Among other things, it was discovered that a number in the quarterback name inevitably leads to a crash. At the time of project completion, no input is known to disrupt the program, which speaks for a very robust code.
 
 
 ## Deployment 
 
+The deployment was secured with the help of Github and Heroku. 
+
+On the Github side, the template provided was used and the repository was connected to heroku. 
+
+On Heroku, a new app was created that includes Python and Node.js as technologies. In addition, variables (credentials and port values) were added. To ensure that the app is properly initialized, the requirements.txt was brought up to date. 
+
+[The app can be found on this page right here](https://quarterback-performance.herokuapp.com/)
 
 
-[You can access the website right here](https:/)
+## Application instructions and further notes
 
+For users who are not yet familiar with American football... 
+These are the standard values per game of the last season: 
+Passes completed: 22,3
+Pass attempts: 34,4
+Completion percentage: 64,8
+Yards: 223,3
+Touchdowns: 1,4
+Interceptions: 0,8
+Sacks: 2,3
+
+In order to get values that are as realistic as possible, it would of course make sense to use these values as a guide and not to select values that cannot be found in a conventional game.
+For more information and rules about american football, the following site is recommended: 
+https://en.wikipedia.org/wiki/American_football_rules
+
+
+The spreadsheet or database can be viewed at: https://docs.google.com/spreadsheets/d/1jzomPaamamyicS_RJ5QSzbrvsP8R4oTxsX2uFYE80WE/edit#gid=499135904
+However, this can only be opened in viewer mode to exclude deleting the averages row. If a full access is necessary / desired, please contact me.
 
 ## Credits
+The app was developed entirely by myself and no external code was copied or used in any other way. At this point I would like to give credits to the love-sandwiches project of Code Institute, which taught me how to connect and use the API of google sheets. 
+
+General resources for research were: 
+https://stackoverflow.com/freecodecamp
+https://codeberryschool.com/en/
+https://www.geeksforgeeks.org/
+https://developers.google.com/sheets/api
+
+However, this was only used to fix standard issues. So for example, how do I handle lists in a list, how do I convert datatypes, etc.? Only solution strategies were taken from these sources. 
+
+The standard football values were found on the following page: 
+https://www.pro-football-reference.com/years/NFL/passing.htm
+
+I hope you have some fun with this app and that you get involved with this exciting sport. 
